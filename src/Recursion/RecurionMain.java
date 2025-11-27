@@ -2,8 +2,8 @@ package Recursion;
 
 public class RecurionMain {
     public static void main(String[] args) {
-        int number = 2222;
-        int ans = product(number);
+        int number = 1254;
+       int ans =  sumOfDigits(number);
         System.out.println(ans);
     }
 
@@ -34,8 +34,9 @@ public class RecurionMain {
         if(number == 0){
             return;
         }
-        printSequence(number-1);
         System.out.println(number);
+        printSequence(number-1);
+
 
     }
 

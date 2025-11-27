@@ -1,16 +1,17 @@
 package Recursion;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecursionInArrays {
     public static void main(String[] args) {
-        int[] arr = {10,12,20,2,5,6,8};
-        //boolean sort = isSorted(arr, 0);
-       // System.out.println(sort);
+        int[] arr = {10,2,2,2,5,6,8};
+        List<Integer> list1 = lSearch1(arr, 0,2);
+        System.out.println(list1);
 //        ArrayList<Integer> list = lSearch1(arr,0,9);
 //        System.out.println(list);
-        int ans = binary(arr,12,0, arr.length-1);
-        System.out.println(ans);
+//        int ans = binary(arr,12,0, arr.length-1);
+//        System.out.println(ans);
     }
 
 

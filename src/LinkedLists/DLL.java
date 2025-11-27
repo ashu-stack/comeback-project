@@ -64,6 +64,56 @@ public class DLL {
         size++;
 
     }
+    public void deleteAllKey(int key){
+        Node temp = head;
+        while(temp != null){
+            if(temp.val == key){
+                if(temp.prev != null) {
+                    temp.prev.next = temp.next;
+                }
+                if(temp.next !=null) {
+                    temp.next.prev = temp.prev;
+                }
+            }
+            temp = temp.next;
+        }
+    }
+    public void findPairs(int sum){
+        Node left = head;
+        Node temp = head;
+        while(temp.next != null){
+            temp = temp.next;
+        }
+        Node right = temp;
+        while(left.val < right.val){
+            int pairSum = left.val+right.val;
+            if(pairSum == sum){
+                System.out.println(left.val + " + " + right.val);
+                right = right.prev;
+                left = left.next;
+            }
+            else if(pairSum > sum){
+                right = right.prev;
+            }
+            else if (pairSum < sum ){
+                left = left.next;
+            }
+
+        }
+    }
+
+    public void removeDuplicates(){
+        Node temp = head;
+        while(temp != null && temp.next != null){
+            if(temp.val == temp.next.val){
+                temp.next = temp.next.next;
+            }
+            else{
+
+                temp = temp.next;
+            }
+        }
+    }
     private class Node{
         int val;
         Node next;
@@ -80,5 +130,7 @@ public class DLL {
             this.next = next;
         }
     }
+
+
 
 }

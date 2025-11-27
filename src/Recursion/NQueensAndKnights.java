@@ -2,12 +2,8 @@ package Recursion;
 
 public class NQueensAndKnights {
     public static void main(String[] args) {
-        boolean[][] board = {
-                {false,false,false,false},
-                {false,false,false,false},
-                {false,false,false,false},
-                {false,false,false,false}
-        };
+        int n = 4;
+        boolean[][] board = new boolean[n][n] ;
         knight(board,0,0,4);
 
     }
@@ -22,7 +18,7 @@ public class NQueensAndKnights {
             return;
         }
         if(col == board.length){
-            knight(board, row+1, 0, knights-1);
+            knight(board, row+1, 0, knights);
             return;
         }
 
@@ -31,7 +27,7 @@ public class NQueensAndKnights {
             knight(board, row, col+1, knights-1);
             board[row][col] = false;
         }
-        knight(board,row, col+1, knights-1);
+        knight(board,row, col+1, knights);
 
     }
 
@@ -50,7 +46,7 @@ public class NQueensAndKnights {
         }
 
         if(isValid(board, row-1,col-2)){
-            if(board[row+1][col-2]){
+            if(board[row-1][col-2]){
                 return false;
             }
         }
@@ -65,9 +61,10 @@ public class NQueensAndKnights {
 
     static boolean isValid(boolean[][] board, int row, int col){
 
-        if(row < 0 || row > board.length) return false;
-        if(col < 0 || col > board.length) return false;
-        return true;
+        if(row >= 0 && row< board.length && col >= 0 && col < board.length){
+            return true;
+        }
+        return false;
     }
     public static void display(boolean[][] board){
         for(boolean[] row:board){
@@ -75,7 +72,7 @@ public class NQueensAndKnights {
                 if(el){
                     System.out.print("K ");
                 }else{
-                    System.out.print("X ");
+                    System.out.print("0 ");
                 }
 
             }
