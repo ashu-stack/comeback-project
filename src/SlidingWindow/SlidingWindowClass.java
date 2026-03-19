@@ -9,8 +9,30 @@ public class SlidingWindowClass {
        // int maxSum = findMaxSum(arr, size);
 
         //min sum of a subarray of size k
-        int minSum = findMinSum(arr,size);
-        System.out.println(minSum);
+       // int minSum = findMinSum(arr,size);
+
+        //min average of subarray of size k
+        float avg = findMinAvg(arr,size);
+        System.out.println(avg);
+    }
+
+    private static float findMinAvg(int[] arr, int size) {
+       // float minAvg = Float.MAX_VALUE;
+        int n= arr.length;
+        int windowSum = 0;
+        float winAvg = 0;
+        for(int i=0; i<size; i++){
+            windowSum += arr[i];
+
+        }
+        winAvg = (float) windowSum /size;
+        for(int i=size; i<n; i++){
+            windowSum += arr[i] - arr[i-size];
+            float avg = (float) windowSum/size;
+            winAvg = Math.min(winAvg,avg);
+        }
+
+        return winAvg;
     }
 
     private static int findMinSum(int[] arr, int size) {
@@ -30,6 +52,8 @@ public class SlidingWindowClass {
         return minSum;
 
     }
+
+
 
     private static int findMaxSum(int[] arr, int size) {
         int maxSum = Integer.MIN_VALUE;
