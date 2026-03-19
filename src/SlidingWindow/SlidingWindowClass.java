@@ -2,8 +2,8 @@ package SlidingWindow;
 
 public class SlidingWindowClass {
     public static void main(String[] args) {
-        int[] arr = {3,5,12,66,2,21,11,55,1,1,1};
-        int size = 3;
+        int[] arr = {1,1,1,0,0,1,0,1,1,1,1,0,0,1,1,0,1,1,1,1,1};
+        int size = 6;
 
         //max sum of a subarray of size k;
        // int maxSum = findMaxSum(arr, size);
@@ -15,8 +15,30 @@ public class SlidingWindowClass {
        // float avg = findMinAvg(arr,size);
 
         //max average of subarray of size k
-        float avg = findMaxAvg(arr, size);
-        System.out.println(avg);
+        //float avg = findMaxAvg(arr, size);
+        int maxOneCount = findMaxOneCount(arr,size);
+        System.out.println(maxOneCount);
+    }
+
+    private static int findMaxOneCount(int[] arr, int size) {
+        int maxOneCount=0;
+        int left=0, right=0;
+        int oneCount=0;
+        while(right < size){
+            if(arr[right] == 1) oneCount++;
+            right++;
+        }
+
+        maxOneCount = oneCount;
+        for(right = size; right<arr.length; right++){
+            if(arr[right] == 1) oneCount++;
+            if(arr[left] == 1) oneCount--;
+            left++;
+
+            maxOneCount = Math.max(maxOneCount,oneCount);
+        }
+        return maxOneCount;
+
     }
 
     private static float findMaxAvg(int[] arr, int size) {
