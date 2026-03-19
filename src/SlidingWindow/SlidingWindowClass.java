@@ -16,8 +16,27 @@ public class SlidingWindowClass {
 
         //max average of subarray of size k
         //float avg = findMaxAvg(arr, size);
-        int maxOneCount = findMaxOneCount(arr,size);
-        System.out.println(maxOneCount);
+        //int maxOneCount = findMaxOneCount(arr,size);
+        int minOneCount = findMinOneCount(arr,size);
+        System.out.println(minOneCount);
+    }
+
+    private static int findMinOneCount(int[] arr, int size) {
+        int minOneCount=0;
+        int left=0, right=0;
+        int oneCount=0;
+        while (right < size){
+            if(arr[right] == 1) oneCount++;
+            right++;
+        }
+        minOneCount = oneCount;
+        for(right = size; right < arr.length; right++){
+            if(arr[left] == 1) oneCount--;
+            left++;
+            if(arr[right] == 1) oneCount++;
+            minOneCount = Math.min(oneCount,minOneCount);
+        }
+        return minOneCount;
     }
 
     private static int findMaxOneCount(int[] arr, int size) {
