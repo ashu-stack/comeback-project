@@ -2,12 +2,35 @@ package SlidingWindow;
 
 public class VariableWindowClass {
     public static void main(String[] args) {
-        int[] arr = {1,1,5,8,7,22,6,14,2};
+        int[] arr = {1,1,1,1,1,1,6,14,2};
         int target = 22;
        // int smallest = findSmallestSubArray(arr, target);
         int largest = findLargestSubArray(arr,target);
-        System.out.println(largest);
 
+        //max subarray with sum at most k
+        int atMostK = atMostK(arr,target);
+        System.out.println(atMostK);
+
+    }
+
+    private static int atMostK(int[] arr, int target) {
+        int res= Integer.MIN_VALUE;
+        int sum = 0;
+        int left = 0;
+        for(int right=0; right<arr.length; right++){
+            sum += arr[right];
+            if(sum <= target){
+                res = Math.max(res, right-left+1);
+            }
+            else{
+                while(sum > target){
+                    sum -= arr[left];
+                    left++;
+                }
+                res = Math.max(res, right-left+1);
+            }
+        }
+        return res;
     }
 
     private static int findLargestSubArray(int[] arr, int target) {
