@@ -9,9 +9,27 @@ public class VariableWindowClass {
 
         //max subarray with sum at most k
         int atMostK = atMostK(arr,target);
+
+        int atLeastK = atLeastK(arr,target);
         System.out.println(atMostK);
 
     }
+
+    private static int atLeastK(int[] arr, int target) {
+        int sum=0;
+        int res = Integer.MAX_VALUE;
+        int left = 0;
+        for(int right=0; right<arr.length; right++){
+            sum += arr[right];
+
+            if(sum >= target){
+                res = Math.min(res, right-left+1);
+            }
+
+        }
+        return res;
+    }
+
 
     private static int atMostK(int[] arr, int target) {
         int res= Integer.MIN_VALUE;
