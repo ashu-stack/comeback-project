@@ -5,14 +5,45 @@ import java.util.*;
 public class HeapSums {
     public static void main(String[] args) {
         int[] arr = {3,3,2,2,4,15,4,20,20,9};
-        int k = 4;
+        int[][] points = {{1,3},{-2,2},{5,8},{0,1}};
+        int k = 2;
+
+        int[][] closePoints = closestPoints(points, k);
         //List<Integer> kSmallest = kthSmallest(arr,k);
        // List<Integer> kLargest = kthLargest(arr,k);
        // List<Integer> kClosest =  kClosestTo(arr,k,10);
         List<Integer> topKFrequent = topKFrequentElement(arr,k);
 
-        System.out.println(topKFrequent);
+        System.out.println(Arrays.deepToString(closePoints));
 
+    }
+
+    private static int[][] closestPoints(int[][] points, int k) {
+        PriorityQueue<Point> maxHeaps = new PriorityQueue<>((a,b) -> {
+            return Integer.compare(b.dist, a.dist);
+        });
+        int n = points.length;
+        for(int i=0; i<n; i++){
+            int x = points[i][0];
+            int y = points[i][1];
+            int dist = x*x + y*y;
+            maxHeaps.add(new Point(dist,x,y));
+            if(maxHeaps.size()>k){
+                maxHeaps.remove();
+            }
+        }
+
+        int[][] ans = new int[k][2];
+        int ind=0;
+        while(!maxHeaps.isEmpty()){
+            int x = maxHeaps.peek().x;
+            int y = maxHeaps.peek().y;
+            ans[ind][0] = x;
+            ans[ind][1] = y;
+            maxHeaps.remove();
+            ind++;
+        }
+        return ans;
     }
 
     private static List<Integer> topKFrequentElement(int[] arr, int k) {
@@ -43,6 +74,16 @@ public class HeapSums {
 
     }
 
+    public static class Point{
+        int dist;
+        int x;
+        int y;
+        public Point(int dist, int x, int y){
+            this.dist = dist;
+            this.x = x;
+            this.y = y;
+        }
+    }
 
     public static class Pairs{
         int freq;
