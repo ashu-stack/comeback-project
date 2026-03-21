@@ -18,7 +18,6 @@ public class HashMaps {
         }
         int length = 0;
         int maxOdd = 0;
-
         for(var entry : map.entrySet()){
             int n = entry.getValue();
             if(n%2 == 0){
