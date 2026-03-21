@@ -1,21 +1,57 @@
 package Heaps;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class HeapSums {
     public static void main(String[] args) {
-        int[] arr = {3,2,1,10,11,15,4,20,60,9};
+        int[] arr = {3,3,2,2,4,15,4,20,20,9};
         int k = 4;
         //List<Integer> kSmallest = kthSmallest(arr,k);
        // List<Integer> kLargest = kthLargest(arr,k);
-        List<Integer> kClosest =  kClosestTo(arr,k,10);
+       // List<Integer> kClosest =  kClosestTo(arr,k,10);
+        List<Integer> topKFrequent = topKFrequentElement(arr,k);
 
-        System.out.println(kClosest);
+        System.out.println(topKFrequent);
+
     }
 
+    private static List<Integer> topKFrequentElement(int[] arr, int k) {
+        int n = arr.length;
+        List<Integer> list = new ArrayList<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int a : arr){
+            map.put(a ,map.getOrDefault(a,0) + 1);
+        }
+        PriorityQueue<Pairs> minHeap = new PriorityQueue<>((a,b) -> {
+            int cmp = Integer.compare(a.freq, b.freq);
+            if(cmp != 0) return cmp;
+            return Integer.compare(a.no, b.no);
+        });
+        for(var entry : map.entrySet()){
+            minHeap.add(new Pairs(entry.getValue(),entry.getKey()));
+            if(minHeap.size()>k){
+                minHeap.remove();
+            }
+        }
+
+        while(!minHeap.isEmpty()){
+            list.add(minHeap.peek().no);
+            minHeap.remove();
+        }
+
+        return list;
+
+    }
+
+
+    public static class Pairs{
+        int freq;
+        int no;
+        public Pairs(int freq, int no){
+            this.freq = freq;
+            this.no = no;
+        }
+    }
     public static class Pair{
         int diff;
         int no;
