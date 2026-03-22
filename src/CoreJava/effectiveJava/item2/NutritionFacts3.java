@@ -1,5 +1,6 @@
 package CoreJava.effectiveJava.item2;
 
+// BUILDER PATTERN
 public class NutritionFacts3 {
     private int servingSize;
     private int servings;
