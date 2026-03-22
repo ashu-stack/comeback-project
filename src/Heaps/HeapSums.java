@@ -92,6 +92,14 @@ public class HeapSums {
             this.freq = freq;
             this.no = no;
         }
+
+        @Override
+        public String toString() {
+            return "Pairs{" +
+                    "freq=" + freq +
+                    ", no=" + no +
+                    '}';
+        }
     }
     public static class Pair{
         int diff;
