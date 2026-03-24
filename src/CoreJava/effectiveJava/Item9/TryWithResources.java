@@ -8,12 +8,16 @@ public class TryWithResources {
     private static final int BUFFER_SIZE = 100;
 
     public static void main(String[] args) throws IOException {
-        String path = "C:\\Users\\ashut\\Documents\\Item9.txt";
+        String path = "C:\\Users\\ashut\\Documents\\myOwntext.txt";
 
-        String dest = "C:\\Users\\ashut\\Documents\\Item10file.txt";
+        File file = new File(path);
+        file.createNewFile();
+        System.out.println(file.getPath());
+
+       // String dest = "C:\\Users\\ashut\\Documents\\Item10file.txt";
 
         //String firstLine = firstLineOf(path);
-        copy(path,dest);
+       // copy(path,dest);
 
        // System.out.println(firstLine);
     }
