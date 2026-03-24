@@ -10,7 +10,7 @@ public class ExceptionHandle {
                 throw new MyOwnException();
             }
         } catch (MyOwnException e) {
-            System.out.println();
+            e.printStackTrace();
         }finally {
             System.out.println(name);
         }
