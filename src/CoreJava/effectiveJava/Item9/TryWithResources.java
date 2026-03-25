@@ -11,10 +11,10 @@ public class TryWithResources {
         String path = "C:\\Users\\ashut\\Documents\\item9.txt";
 
         String dest = "C:\\Users\\ashut\\Documents\\Item10file.txt";
-        String firstLine = firstLineOf(path);
-       copy(path,dest);
+        firstLineOf(path);
+      // copy(path,dest);
 
-        System.out.println(firstLine);
+      //  System.out.println(firstLine);
     }
 
     public static void copy(String src, String str) throws IOException {
@@ -29,10 +29,12 @@ public class TryWithResources {
         }
     }
 
-    public static String firstLineOf(String path) throws IOException {
+    public static void firstLineOf(String path) throws IOException {
         // try-with resources
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            return br.readLine();
+            while(br.ready()) {
+                System.out.println(br.readLine()); ;
+            }
         }
     }
 }
