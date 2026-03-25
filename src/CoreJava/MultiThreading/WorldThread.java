@@ -3,9 +3,10 @@ package CoreJava.MultiThreading;
 public class WorldThread extends Thread{
     @Override
     public void run(){
-        while(true){
-            System.out.println("World");
-
+        int count = 5;
+        while(count > 0 ){
+            System.out.println(Thread.currentThread().getName() + "Count: " + count);
+            count--;
         }
 
     }
