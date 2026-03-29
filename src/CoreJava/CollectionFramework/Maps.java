@@ -9,6 +9,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Maps {
 
     public static void main(String[] args) {
+
+        Map<Integer, String> stringMap = Map.of(1, "Ashu", 2, "NotAshu");
+        System.out.println(stringMap);
+        stringMap.put(3,"dhsbsjsb");
         Map<Students, String> map = new EnumMap<Students,String>(Students.class);
         map.put(Students.nandu,"Nandini");
         map.put(Students.sohu, "Soham");
