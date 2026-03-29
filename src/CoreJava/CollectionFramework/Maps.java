@@ -9,11 +9,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Maps {
 
     public static void main(String[] args) {
-//        Map<Students, String> map = new EnumMap<Students,String>(Students.class);
-//        map.put(Students.nandu,"Nandini");
-//        map.put(Students.sohu, "Soham");
-//        map.put(Students.ashu,"Ashutosh");
-//        System.out.println(map);
+        Map<Students, String> map = new EnumMap<Students,String>(Students.class);
+        map.put(Students.nandu,"Nandini");
+        map.put(Students.sohu, "Soham");
+        map.put(Students.ashu,"Ashutosh");
+        System.out.println(map);
 
         Map<Integer, String> maps = new ConcurrentHashMap<>();
 //        maps.put(1, "DSA");
